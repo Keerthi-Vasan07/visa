@@ -1,0 +1,8 @@
+pypdf
+langchain-text-splitters
+ollama
+chromadb
+opentelemetry-api==1.38.0
+opentelemetry-sdk==1.38.0
+opentelemetry-exporter-otlp-proto-common==1.38.0
+opentelemetry-proto==1.38.0
