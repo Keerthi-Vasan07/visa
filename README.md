@@ -1,115 +1,256 @@
-📄 Local PDF RAG System
+# 🧠 GenAI Agent for Universal Data Quality Scoring
 
-A private, fully local Retrieval-Augmented Generation (RAG) system that allows you to chat with your PDF documents using Ollama for local LLMs and ChromaDB for vector storage — without sending any data to the cloud.
+## 💬 With Conversational Chatbot for Speaking with Data (Payments Domain)
 
-🚀 Project Overview
+Payment organizations process massive volumes of transaction and operational data every day. However, there is **no universal, objective, and explainable way** to evaluate data quality across standard dimensions such as completeness, accuracy, consistency, timeliness, uniqueness, validity, and integrity.
 
-This project enables you to extract and query knowledge from local PDF files securely.
-It follows a modular pipeline for:
-PDF text extraction
-Intelligent text chunking
-Embedding generation
-Persistent vector storage
-Context-aware question answering
-All processing happens locally, ensuring privacy and full control over your data.
+Additionally, **non-technical users cannot interact with data directly**. They depend on engineers to answer basic questions like:
 
-🧠 Key Technologies
-Language Model: Llama 3.2 (via Ollama)
-Embedding Model: mxbai-embed-large (via Ollama)
-Vector Database: ChromaDB (local persistence)
-PDF Processing: pypdf
-Text Chunking: Recursive Character Text Splitting
+* “Is this dataset reliable?”
+* “Why is this report failing?”
+* “Which fields are risky for compliance?”
 
-🛠️ System Flow
-The system operates in two main phases:
-1️⃣ Data Ingestion Phase
-This phase prepares your documents for retrieval and search.
+---
 
-Extraction
-pdfreader.py reads the PDF and extracts raw text page-by-page.
+## 🎯 Objective
 
-Chunking
-chunker.py splits large text into smaller chunks
-Chunk size: 1000 characters
-Overlap: 150 characters (to preserve context)
+To build a **GenAI-powered Data Quality Agent with an Interactive Chatbot** that allows users to:
 
-Embedding
-embedder.py converts text chunks into numerical vectors using a local embedding model.
+* Upload **any dataset securely**
+* Automatically compute **dimension-wise Data Quality Scores**
+* Generate a **composite Data Quality Score (DQS)**
+* **Chat with the data in natural language**
+* Receive **plain-English explanations and recommendations**
+* Ensure **privacy, governance, and compliance**
 
-Storage
-vector.py stores vectors and metadata in a local chroma_db/ directory.
+---
 
-2️⃣ User Query Phase
-This phase handles real-time interaction.
+## 💡 Solution Overview
 
-Vectorization
-The user’s question is converted into an embedding.
+This project delivers a **Conversational Data Quality Intelligence Platform**.
 
-Retrieval
-ChromaDB retrieves the top 3 most relevant chunks from the database.
+### 🔑 Core Innovation
 
-Augmentation
-Retrieved content is injected into a structured prompt.
+> A **chatbot that understands data quality metrics and metadata**, allowing users to *talk to their dataset* instead of reading complex reports.
 
-Generation
-Llama 3.2 generates a response strictly based on the retrieved document context.
+Think of it as:
 
-📂 Project File Structure
-.
-├── dataprocess.py      # Orchestrates the ingestion pipeline
-├── pdfreader.py        # Extracts text from PDFs
-├── chunker.py          # Splits text into overlapping chunks
-├── embedder.py         # Generates embeddings using Ollama
-├── vector.py           # Manages ChromaDB storage
-├── queryprocess.py     # Handles user queries and responses
-├── requirements.txt    # Python dependencies
-└── chroma_db/          # Local vector database (auto-generated)
+* 🗣️ **ChatGPT for Data Quality**
+* 📊 **Credit Score + Doctor + Assistant for Data**
+* 🏦 **Trust layer for payments data**
 
-🚦 Getting Started
-✅ Prerequisites
+---
 
-Install Ollama and ensure it is running.
+## 💬 Conversational Chatbot (Main Feature)
 
-Download the required models:
-ollama pull mxbai-embed-large
-ollama pull llama3.2
+### 🧠 What the Chatbot Can Do
 
-📦 Installation
-Clone this repository and navigate into the project directory.
+The chatbot is powered by **GenAI + RAG (Retrieval-Augmented Generation)** and can answer questions such as:
 
-Install dependencies:
-pip install -r requirements.txt
+* “What is the overall quality of this dataset?”
+* “Why is the completeness score low?”
+* “Which columns are causing consistency issues?”
+* “Is this dataset safe for regulatory reporting?”
+* “What should I fix first to improve the score?”
+* “Explain the risks in simple terms.”
 
-▶️ Usage
-1️⃣ Add Your PDF
-Place your PDF file (e.g., oops.pdf) in the project root directory.
+### 🗣️ Example Chat Interaction
 
-2️⃣ Ingest the Document
-Run the ingestion pipeline:
-python dataprocess.py
+**User:**
 
+> Why is the data quality score only 62?
 
-This will:
-Read the PDF
-Split text into chunks
-Generate embeddings
-Store vectors locally in ChromaDB
+**Chatbot:**
 
-3️⃣ Ask Questions
-Start querying your document:
-python queryprocess.py
+> The score is low mainly due to missing values in KYC address fields and duplicate transaction IDs. This can impact compliance checks and settlement accuracy. Improving these two areas could increase the score by approximately 18 points.
 
-Ask natural-language questions and receive document-grounded answers.
+---
 
-🔒 Privacy & Security
-No cloud APIs
-No data leaves your system
-Fully offline after model download
+## 🧩 Key Capabilities
 
-⭐ Use Cases
+### ✔ Secure Dataset Ingestion
 
-Private document Q&A
-Study and exam preparation
-Technical documentation search
-Research paper analysis
-Secure enterprise knowledge bases
+* CSV / Excel / JSON supported
+* No raw data storage
+* Metadata-only processing
+
+### ✔ Automatic Dimension Identification
+
+The system dynamically identifies which data quality dimensions apply based on dataset structure and context.
+
+### ✔ Data Quality Scoring Engine
+
+Scores computed for:
+
+* Completeness
+* Accuracy
+* Consistency
+* Timeliness
+* Uniqueness
+* Validity
+* Integrity
+
+### ✔ Composite Data Quality Score (DQS)
+
+* Unified score from **0–100**
+* Represents overall dataset trustworthiness
+
+### ✔ GenAI Chatbot for Data Interaction
+
+* Natural language Q&A
+* Business-friendly explanations
+* Context-aware insights (payments domain)
+* No SQL or technical knowledge required
+
+### ✔ Actionable Recommendations
+
+* Prioritized fixes
+* Step-by-step guidance
+* Regulatory and business impact awareness
+
+---
+
+## 🧠 Data Quality Dimensions Explained
+
+| Dimension        | Meaning                            |
+| ---------------- | ---------------------------------- |
+| **Completeness** | Missing or null values             |
+| **Accuracy**     | Correctness of data                |
+| **Consistency**  | Conflicting values across columns  |
+| **Timeliness**   | Data freshness                     |
+| **Uniqueness**   | Duplicate records                  |
+| **Validity**     | Rule and format compliance         |
+| **Integrity**    | Relationship and dependency checks |
+
+---
+
+## 🏗️ High-Level Architecture
+
+**System Flow:**
+
+1. Secure Data Upload
+2. Metadata Extraction
+3. Rule-Based & Statistical Profiling
+4. Dimension-Level Scoring
+5. Composite DQS Calculation
+6. Metadata Indexing (Vector Store)
+7. GenAI Chatbot (RAG-based Reasoning)
+8. Interactive Dashboard & Chat Interface
+
+---
+
+## 🤖 Role of Generative AI
+
+GenAI is used to:
+
+* Interpret data quality metrics
+* Answer user questions conversationally
+* Convert technical issues into business language
+* Provide compliance-aware explanations
+* Recommend improvements interactively
+
+Example:
+
+> “Low integrity between transaction and settlement tables may lead to reconciliation failures and audit risks.”
+
+---
+
+## 🔐 Privacy, Security & Governance
+
+Designed specifically for the **payments domain**:
+
+* ❌ No transaction data persisted
+* ✅ Metadata-only analysis
+* ✅ Sensitive fields masked or hashed
+* ✅ Chatbot operates on scores & metadata only
+* ✅ Audit-friendly outputs
+
+Aligned with:
+
+* PCI-DSS principles
+* GDPR privacy guidelines
+
+---
+
+## 🧑‍💻 Tech Stack
+
+### Backend & Processing
+
+* Python
+* Pandas
+* NumPy
+
+### GenAI & Chatbot
+* LLaMA (Meta AI)
+* Hugging Face Transformers
+* RAG (Retrieval-Augmented Generation)
+* Vector embeddings (FAISS)
+
+### Data Quality Logic
+
+* Rule-based validation
+* Statistical profiling
+
+### UI & Interaction
+
+* Streamlit
+* Integrated Chat Interface
+* Plotly dashboards
+
+### Deployment
+
+* Google Colab / Local execution
+* GitHub-hosted repository
+
+---
+### 4️⃣ Use the Chatbot
+
+* Upload a dataset
+* Ask questions in natural language
+* Explore scores, insights, and fixes interactively
+
+---
+
+## 📊 Outputs Provided
+
+* Overall Data Quality Score (DQS)
+* Dimension-wise score breakdown
+* Interactive visual dashboards
+* Conversational chatbot responses
+* Actionable improvement recommendations
+
+---
+
+## 🏦 Why This Is Valuable for Payments & Visa
+
+* Makes data quality **transparent and measurable**
+* Enables **non-technical stakeholders** to interact with data
+* Reduces dependency on manual investigations
+* Improves regulatory confidence
+* Scales across datasets, teams, and regions
+
+This solution can evolve into a **platform-level data trust service**.
+
+---
+
+## 🔮 Future Enhancements
+
+* Real-time streaming data chatbot
+* Autonomous agent-based remediation
+* Industry-wide DQS benchmarking
+* API-first integration
+* Multi-language chatbot support
+
+---
+
+## 🏁 Conclusion
+
+> **“Data is only valuable when it is trusted.”**
+
+By combining **data quality scoring with a conversational GenAI chatbot**, this project transforms complex datasets into **trusted, explainable, and interactive intelligence** for the payments ecosystem.
+
+---
+
+## 📜 License
+
+Developed for educational and hackathon purposes under Shaastra 2026 guidelines.

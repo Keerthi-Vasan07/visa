@@ -2,7 +2,7 @@ import os
 import chromadb
 from chromadb.utils.embedding_functions import OllamaEmbeddingFunction
 
-def store_in_chroma(chunks, embeddings, pdf_name="document.pdf"):
+def store_in_chroma(chunks, embeddings, document_name="document.json"):
     # 1. Initialize Persistent Client (saves to a folder named 'chroma_db')
     client = chromadb.PersistentClient(path="./chroma_db")
 
@@ -15,14 +15,14 @@ def store_in_chroma(chunks, embeddings, pdf_name="document.pdf"):
 
     # 3. Create or Get a Collection (think of this as a table)
     collection = client.get_or_create_collection(
-        name="pdf_collection",
+        name="json_collection",
         embedding_function=ollama_ef
     )
 
     # 4. Prepare IDs and Metadata
     # Each chunk needs a unique ID
-    ids = [f"{pdf_name}_chunk_{i}" for i in range(len(chunks))]
-    metadatas = [{"source": pdf_name, "chunk_index": i} for i in range(len(chunks))]
+    ids = [f"{document_name}_chunk_{i}" for i in range(len(chunks))]
+    metadatas = [{"source": document_name, "chunk_index": i} for i in range(len(chunks))]
 
     # 5. Add to Database
     collection.add(

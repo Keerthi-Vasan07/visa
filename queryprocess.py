@@ -15,7 +15,7 @@ def process_query_user(user_query: str):
 
     # 3. Access your collection
     collection = client.get_collection(
-        name="pdf_collection", 
+        name="json_collection", 
         embedding_function=ollama_ef
     )
 
